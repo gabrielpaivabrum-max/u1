@@ -1,0 +1,109 @@
+package ex;
+import java.util.Locale;
+import java.util.Scanner;
+import ex.ContaBancaria;
+
+public class aplication {
+
+	public static void main(String[] args) {
+		
+     Locale.setDefault(Locale.US);
+     Scanner sc = new Scanner(System.in);
+     
+     System.out.println("digite o numero da conta");
+     int numeroConta = sc.nextInt();
+     
+     sc.nextLine();
+     
+     System.out.println("diga o nome do titular");
+     String titular= sc.nextLine();
+     
+     System.out.println("havera algum deposito inicial (s/n)");
+      char resposta = sc.next().charAt(0);
+      
+      ContaBancaria conta;
+      
+      if (resposta == 's'|| resposta =='s') {
+    	  System.out.println("digite o valor do deposisto ");
+    	  System.out.print("Digite o valor do depósito inicial: ");
+          double depositoInicial = sc.nextDouble();
+
+          conta = new ContaBancaria(
+                  numeroConta,
+                  titular,
+                  depositoInicial
+                  );
+          
+      }else {
+    	  conta = new ContaBancaria(
+                  numeroConta,
+                  titular
+          );
+      }
+      System.out.println();
+      System.out.println("DADOS DA CONTA ");
+      System.out.println(conta);
+      
+      System.out.println();
+      
+      System.out.println("digite valor do deposito ");
+      double ValorDeposito= sc.nextDouble();
+      
+      conta.depositar(ValorDeposito);
+      
+      System.out.println("dados atualizados da conta ");
+      System.out.println(conta);
+      
+      sc.close();
+
+
+
+      package ex;
+
+public class ContaBancaria {
+
+	private int numeroConta;
+	private double saldoConta;
+	private String titular ; 
+	
+	public ContaBancaria (int numeroConta, String titular) {
+		this.numeroConta = numeroConta;
+		this.titular=titular;		
+	}
+	public ContaBancaria (int numeroConta, String titular , double depositoInicial) {
+		this.numeroConta = numeroConta;
+		this.titular=titular;
+		depositar(depositoInicial);
+	}
+	public int getNumeroConta(){
+		return numeroConta;
+	}
+	public String getTitular() {
+		return titular;
+	}
+	public void setTitular(String titular) {
+		this.titular= titular ;
+	}
+	public double getsaldoConta() {
+		return saldoConta;
+	}
+	public void depositar(double valor) {
+		saldoConta += valor;
+	}
+     public void sacar(double valor ) {
+    	 saldoConta -=valor + 5.00 ;
+     }
+     public String toString() {
+    	 return "conta:"
+    			 + numeroConta
+    			 +", Titular"
+    			 + titular
+    			 +",saldo conta"
+    			 +saldoConta
+    			 +String.format("%.2f",saldoConta);
+    			 
+     }
+}
+
+
+
